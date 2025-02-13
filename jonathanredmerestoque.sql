@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 11/02/2025 às 20:40
+-- Tempo de geração: 13-Fev-2025 às 19:41
 -- Versão do servidor: 10.4.28-MariaDB
--- Versão do PHP: 8.2.4
+-- versão do PHP: 8.2.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,15 +18,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Banco de dados: `jonathanredmerestoque`
+-- Banco de dados: `jonathanrkestoque`
 --
-CREATE DATABASE IF NOT EXISTS `jonathanredmerestoque` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
-USE `jonathanredmerestoque`;
 
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `cliente`
+-- Estrutura da tabela `cliente`
 --
 
 CREATE TABLE `cliente` (
@@ -41,42 +39,42 @@ CREATE TABLE `cliente` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
--- Despejando dados para a tabela `cliente`
+-- Extraindo dados da tabela `cliente`
 --
 
 INSERT INTO `cliente` (`cod_cliente`, `nome_cliente`, `endereco`, `cidade`, `cep`, `cnpj`, `uf`, `ie`) VALUES
-(20, 'Beth', 'Av Climéri', 'São Paulo', '25679300', 'SP', '32', 9280),
+(20, 'Beth', 'Av Climéri', 'São Paulo', '25679300', '3248512673268', 'SP', 9280),
 (110, 'Jorge', 'Rua Caiapó', 'Curitiba', '30078500', '1451276498349', 'PR', 0),
-(130, 'Edmar', 'Rua da Pra', 'Salvador', '30079300', 'BA', '23', 7121),
-(157, 'Paulo', 'Tv. Moraes', 'Londrina', 'null', 'PR', '32', 1923),
-(180, 'Livio', 'Av. Beira ', 'Florianópolis', '30077500', 'SC', '12', 0),
-(222, 'Lúcia', 'Rua Itabir', 'Belo Horizonte', '22124391', 'MG', '28', 2985),
-(234, 'José', 'Quadra 3 b', 'Brasilia', '22841650', 'DF', '21', 2931),
-(260, 'Susana', 'Rua Lopes ', 'Niterói', '30046500', 'RJ', '21', 2530),
-(290, 'Renato', 'Rua Meirel', 'São Paulo', '30225900', 'SP', '13', 1820),
-(390, 'Sebastião', 'Rua da Igr', 'Uberaba', '30438700', 'MG', '32', 9071),
-(410, 'Rodolfo', 'Largo da L', 'Rio de Janeiro', '30078900', 'RJ', '12', 7431),
+(130, 'Edmar', 'Rua da Pra', 'Salvador', '30079300', '234632842349', 'BA', 7121),
+(157, 'Paulo', 'Tv. Moraes', 'Londrina', 'null', '328482233242', 'PR', 1923),
+(180, 'Livio', 'Av. Beira ', 'Florianópolis', '30077500', '1273657123474', 'SC', 0),
+(222, 'Lúcia', 'Rua Itabir', 'Belo Horizonte', '22124391', '2831521393488', 'MG', 2985),
+(234, 'José', 'Quadra 3 b', 'Brasilia', '22841650', '2176357612323', 'DF', 2931),
+(260, 'Susana', 'Rua Lopes ', 'Niterói', '30046500', '217635712329', 'RJ', 2530),
+(290, 'Renato', 'Rua Meirel', 'São Paulo', '30225900', '1327657112314', 'SP', 1820),
+(390, 'Sebastião', 'Rua da Igr', 'Uberaba', '30438700', '321765472133', 'MG', 9071),
+(410, 'Rodolfo', 'Largo da L', 'Rio de Janeiro', '30078900', '1283512823469', 'RJ', 7431),
 (720, 'Ana', 'rua, 17 n.', 'Niterói', '243558-310', '12113231/0001-34', 'RJ', 2134),
-(830, 'Mauricio', 'Av Paulist', 'São Paulo', '3012683', 'SP', '32', 9343),
-(870, 'Flavio', 'Av. Pres V', 'São Paulo', '22763931', '2253412693879', '46', 0);
+(830, 'Mauricio', 'Av Paulist', 'São Paulo', '3012683', '3281698574656', 'SP', 9343),
+(870, 'Flavio', 'Av. Pres V', 'São Paulo', '22763931', '2253412693879', 'SP', 0);
 
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `item_de_pedido`
+-- Estrutura da tabela `itemdepedido`
 --
 
-CREATE TABLE `item_de_pedido` (
-  `pedido_num_pedido` int(11) NOT NULL,
-  `pedido_cod_produto` int(11) NOT NULL,
-  `qntde` int(11) NOT NULL
+CREATE TABLE `itemdepedido` (
+  `cod_pedido` int(11) NOT NULL,
+  `cod_produto` int(11) NOT NULL,
+  `quantidade` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
--- Despejando dados para a tabela `item_de_pedido`
+-- Extraindo dados da tabela `itemdepedido`
 --
 
-INSERT INTO `item_de_pedido` (`pedido_num_pedido`, `pedido_cod_produto`, `qntde`) VALUES
+INSERT INTO `itemdepedido` (`cod_pedido`, `cod_produto`, `quantidade`) VALUES
 (121, 25, 10),
 (121, 31, 35),
 (97, 77, 20),
@@ -110,7 +108,7 @@ INSERT INTO `item_de_pedido` (`pedido_num_pedido`, `pedido_cod_produto`, `qntde`
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `pedido`
+-- Estrutura da tabela `pedido`
 --
 
 CREATE TABLE `pedido` (
@@ -121,7 +119,7 @@ CREATE TABLE `pedido` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
--- Despejando dados para a tabela `pedido`
+-- Extraindo dados da tabela `pedido`
 --
 
 INSERT INTO `pedido` (`num_pedido`, `prazo_entrega`, `cliente_cod_cliente`, `vendedor_cod_cliente`) VALUES
@@ -147,21 +145,21 @@ INSERT INTO `pedido` (`num_pedido`, `prazo_entrega`, `cliente_cod_cliente`, `ven
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `produto`
+-- Estrutura da tabela `produto`
 --
 
 CREATE TABLE `produto` (
   `cod_produto` int(11) NOT NULL,
-  `unid_produto` varchar(10) DEFAULT NULL,
-  `desc_produt` varchar(50) DEFAULT NULL,
-  `valor_unit` decimal(15,2) DEFAULT NULL
+  `unid_medida` varchar(10) DEFAULT NULL,
+  `desc_produto` varchar(50) DEFAULT NULL,
+  `valor_unid` decimal(15,2) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
--- Despejando dados para a tabela `produto`
+-- Extraindo dados da tabela `produto`
 --
 
-INSERT INTO `produto` (`cod_produto`, `unid_produto`, `desc_produt`, `valor_unit`) VALUES
+INSERT INTO `produto` (`cod_produto`, `unid_medida`, `desc_produto`, `valor_unid`) VALUES
 (13, 'G', 'Ouro', 6.18),
 (22, 'M', 'Linho', 0.11),
 (25, 'Kg', 'Queijo', 0.97),
@@ -176,7 +174,7 @@ INSERT INTO `produto` (`cod_produto`, `unid_produto`, `desc_produt`, `valor_unit
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `vendedor`
+-- Estrutura da tabela `vendedor`
 --
 
 CREATE TABLE `vendedor` (
@@ -187,7 +185,7 @@ CREATE TABLE `vendedor` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
--- Despejando dados para a tabela `vendedor`
+-- Extraindo dados da tabela `vendedor`
 --
 
 INSERT INTO `vendedor` (`cod_vendedor`, `nome_vendedor`, `sal_fixo`, `faixa_comissao`) VALUES
@@ -206,20 +204,20 @@ INSERT INTO `vendedor` (`cod_vendedor`, `nome_vendedor`, `sal_fixo`, `faixa_comi
 --
 
 --
--- Índices de tabela `cliente`
+-- Índices para tabela `cliente`
 --
 ALTER TABLE `cliente`
   ADD PRIMARY KEY (`cod_cliente`);
 
 --
--- Índices de tabela `item_de_pedido`
+-- Índices para tabela `itemdepedido`
 --
-ALTER TABLE `item_de_pedido`
-  ADD KEY `fk_pedido_num_pedido` (`pedido_num_pedido`),
-  ADD KEY `fk_pedido_cod_produto` (`pedido_cod_produto`);
+ALTER TABLE `itemdepedido`
+  ADD KEY `fk_cod_pedido` (`cod_pedido`) USING BTREE,
+  ADD KEY `fk_cod_produto` (`cod_produto`) USING BTREE;
 
 --
--- Índices de tabela `pedido`
+-- Índices para tabela `pedido`
 --
 ALTER TABLE `pedido`
   ADD PRIMARY KEY (`num_pedido`),
@@ -227,30 +225,30 @@ ALTER TABLE `pedido`
   ADD KEY `FK_VENDEDOR_PEDIDO` (`vendedor_cod_cliente`);
 
 --
--- Índices de tabela `produto`
+-- Índices para tabela `produto`
 --
 ALTER TABLE `produto`
   ADD PRIMARY KEY (`cod_produto`);
 
 --
--- Índices de tabela `vendedor`
+-- Índices para tabela `vendedor`
 --
 ALTER TABLE `vendedor`
   ADD PRIMARY KEY (`cod_vendedor`);
 
 --
--- Restrições para tabelas despejadas
+-- Restrições para despejos de tabelas
 --
 
 --
--- Restrições para tabelas `item_de_pedido`
+-- Limitadores para a tabela `itemdepedido`
 --
-ALTER TABLE `item_de_pedido`
-  ADD CONSTRAINT `fk_pedido_cod_produto` FOREIGN KEY (`pedido_cod_produto`) REFERENCES `produto` (`cod_produto`),
-  ADD CONSTRAINT `fk_pedido_num_pedido` FOREIGN KEY (`pedido_num_pedido`) REFERENCES `pedido` (`num_pedido`);
+ALTER TABLE `itemdepedido`
+  ADD CONSTRAINT `fk_pedido_cod_produto` FOREIGN KEY (`cod_produto`) REFERENCES `produto` (`cod_produto`),
+  ADD CONSTRAINT `fk_pedido_num_pedido` FOREIGN KEY (`cod_pedido`) REFERENCES `pedido` (`num_pedido`);
 
 --
--- Restrições para tabelas `pedido`
+-- Limitadores para a tabela `pedido`
 --
 ALTER TABLE `pedido`
   ADD CONSTRAINT `FK_CLIENTE_PEDIDO` FOREIGN KEY (`cliente_cod_cliente`) REFERENCES `cliente` (`cod_cliente`),

@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 13-Fev-2025 às 19:41
--- Versão do servidor: 10.4.28-MariaDB
--- versão do PHP: 8.2.4
+-- Tempo de geração: 14/02/2025 às 01:48
+-- Versão do servidor: 10.4.32-MariaDB
+-- Versão do PHP: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,15 +18,15 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Banco de dados: `jonathanrkestoque`
+-- Banco de dados: `jonathanrkaliestoque`
 --
-CREATE DATABASE IF NOT EXISTS `jonathanrkestoque` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
-USE `jonathanrkestoque`;
+CREATE DATABASE IF NOT EXISTS `jonathanrkaliestoque` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
+USE `jonathanrkaliestoque`;
 
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `cliente`
+-- Estrutura para tabela `cliente`
 --
 
 CREATE TABLE `cliente` (
@@ -41,15 +41,15 @@ CREATE TABLE `cliente` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
--- Extraindo dados da tabela `cliente`
+-- Despejando dados para a tabela `cliente`
 --
 
 INSERT INTO `cliente` (`cod_cliente`, `nome_cliente`, `endereco`, `cidade`, `cep`, `cnpj`, `uf`, `ie`) VALUES
 (20, 'Beth', 'Av Climéri', 'São Paulo', '25679300', '3248512673268', 'SP', 9280),
-(110, 'Jorge', 'Rua Caiapó', 'Curitiba', '30078500', '1451276498349', 'PR', 0),
+(110, 'Jorge', 'Rua Caiapó', 'Curitiba', '30078500', '1451276498349', 'PR', NULL),
 (130, 'Edmar', 'Rua da Pra', 'Salvador', '30079300', '234632842349', 'BA', 7121),
 (157, 'Paulo', 'Tv. Moraes', 'Londrina', 'null', '328482233242', 'PR', 1923),
-(180, 'Livio', 'Av. Beira ', 'Florianópolis', '30077500', '1273657123474', 'SC', 0),
+(180, 'Livio', 'Av. Beira ', 'Florianópolis', '30077500', '1273657123474', 'SC', NULL),
 (222, 'Lúcia', 'Rua Itabir', 'Belo Horizonte', '22124391', '2831521393488', 'MG', 2985),
 (234, 'José', 'Quadra 3 b', 'Brasilia', '22841650', '2176357612323', 'DF', 2931),
 (260, 'Susana', 'Rua Lopes ', 'Niterói', '30046500', '217635712329', 'RJ', 2530),
@@ -58,25 +58,25 @@ INSERT INTO `cliente` (`cod_cliente`, `nome_cliente`, `endereco`, `cidade`, `cep
 (410, 'Rodolfo', 'Largo da L', 'Rio de Janeiro', '30078900', '1283512823469', 'RJ', 7431),
 (720, 'Ana', 'rua, 17 n.', 'Niterói', '243558-310', '12113231/0001-34', 'RJ', 2134),
 (830, 'Mauricio', 'Av Paulist', 'São Paulo', '3012683', '3281698574656', 'SP', 9343),
-(870, 'Flavio', 'Av. Pres V', 'São Paulo', '22763931', '2253412693879', 'SP', 0);
+(870, 'Flavio', 'Av. Pres V', 'São Paulo', '22763931', '2253412693879', 'SP', NULL);
 
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `itemdepedido`
+-- Estrutura para tabela `itemdopedido`
 --
 
-CREATE TABLE `itemdepedido` (
+CREATE TABLE `itemdopedido` (
   `cod_pedido` int(11) NOT NULL,
   `cod_produto` int(11) NOT NULL,
   `quantidade` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
--- Extraindo dados da tabela `itemdepedido`
+-- Despejando dados para a tabela `itemdopedido`
 --
 
-INSERT INTO `itemdepedido` (`cod_pedido`, `cod_produto`, `quantidade`) VALUES
+INSERT INTO `itemdopedido` (`cod_pedido`, `cod_produto`, `quantidade`) VALUES
 (121, 25, 10),
 (121, 31, 35),
 (97, 77, 20),
@@ -110,21 +110,21 @@ INSERT INTO `itemdepedido` (`cod_pedido`, `cod_produto`, `quantidade`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `pedido`
+-- Estrutura para tabela `pedido`
 --
 
 CREATE TABLE `pedido` (
-  `num_pedido` int(11) NOT NULL,
+  `cod_pedido` int(11) NOT NULL,
   `prazo_entrega` int(10) DEFAULT NULL,
   `cliente_cod_cliente` int(11) NOT NULL,
   `vendedor_cod_cliente` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
--- Extraindo dados da tabela `pedido`
+-- Despejando dados para a tabela `pedido`
 --
 
-INSERT INTO `pedido` (`num_pedido`, `prazo_entrega`, `cliente_cod_cliente`, `vendedor_cod_cliente`) VALUES
+INSERT INTO `pedido` (`cod_pedido`, `prazo_entrega`, `cliente_cod_cliente`, `vendedor_cod_cliente`) VALUES
 (91, 20, 260, 11),
 (97, 20, 720, 101),
 (98, 20, 410, 209),
@@ -147,7 +147,7 @@ INSERT INTO `pedido` (`num_pedido`, `prazo_entrega`, `cliente_cod_cliente`, `ven
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `produto`
+-- Estrutura para tabela `produto`
 --
 
 CREATE TABLE `produto` (
@@ -158,7 +158,7 @@ CREATE TABLE `produto` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
--- Extraindo dados da tabela `produto`
+-- Despejando dados para a tabela `produto`
 --
 
 INSERT INTO `produto` (`cod_produto`, `unid_medida`, `desc_produto`, `valor_unid`) VALUES
@@ -176,7 +176,7 @@ INSERT INTO `produto` (`cod_produto`, `unid_medida`, `desc_produto`, `valor_unid
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `vendedor`
+-- Estrutura para tabela `vendedor`
 --
 
 CREATE TABLE `vendedor` (
@@ -187,7 +187,7 @@ CREATE TABLE `vendedor` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
--- Extraindo dados da tabela `vendedor`
+-- Despejando dados para a tabela `vendedor`
 --
 
 INSERT INTO `vendedor` (`cod_vendedor`, `nome_vendedor`, `sal_fixo`, `faixa_comissao`) VALUES
@@ -206,51 +206,51 @@ INSERT INTO `vendedor` (`cod_vendedor`, `nome_vendedor`, `sal_fixo`, `faixa_comi
 --
 
 --
--- Índices para tabela `cliente`
+-- Índices de tabela `cliente`
 --
 ALTER TABLE `cliente`
   ADD PRIMARY KEY (`cod_cliente`);
 
 --
--- Índices para tabela `itemdepedido`
+-- Índices de tabela `itemdopedido`
 --
-ALTER TABLE `itemdepedido`
+ALTER TABLE `itemdopedido`
   ADD KEY `fk_cod_pedido` (`cod_pedido`) USING BTREE,
   ADD KEY `fk_cod_produto` (`cod_produto`) USING BTREE;
 
 --
--- Índices para tabela `pedido`
+-- Índices de tabela `pedido`
 --
 ALTER TABLE `pedido`
-  ADD PRIMARY KEY (`num_pedido`),
+  ADD PRIMARY KEY (`cod_pedido`),
   ADD KEY `FK_CLIENTE_PEDIDO` (`cliente_cod_cliente`),
   ADD KEY `FK_VENDEDOR_PEDIDO` (`vendedor_cod_cliente`);
 
 --
--- Índices para tabela `produto`
+-- Índices de tabela `produto`
 --
 ALTER TABLE `produto`
   ADD PRIMARY KEY (`cod_produto`);
 
 --
--- Índices para tabela `vendedor`
+-- Índices de tabela `vendedor`
 --
 ALTER TABLE `vendedor`
   ADD PRIMARY KEY (`cod_vendedor`);
 
 --
--- Restrições para despejos de tabelas
+-- Restrições para tabelas despejadas
 --
 
 --
--- Limitadores para a tabela `itemdepedido`
+-- Restrições para tabelas `itemdopedido`
 --
-ALTER TABLE `itemdepedido`
+ALTER TABLE `itemdopedido`
   ADD CONSTRAINT `fk_pedido_cod_produto` FOREIGN KEY (`cod_produto`) REFERENCES `produto` (`cod_produto`),
-  ADD CONSTRAINT `fk_pedido_num_pedido` FOREIGN KEY (`cod_pedido`) REFERENCES `pedido` (`num_pedido`);
+  ADD CONSTRAINT `fk_pedido_num_pedido` FOREIGN KEY (`cod_pedido`) REFERENCES `pedido` (`cod_pedido`);
 
 --
--- Limitadores para a tabela `pedido`
+-- Restrições para tabelas `pedido`
 --
 ALTER TABLE `pedido`
   ADD CONSTRAINT `FK_CLIENTE_PEDIDO` FOREIGN KEY (`cliente_cod_cliente`) REFERENCES `cliente` (`cod_cliente`),
